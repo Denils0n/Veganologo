@@ -1,2 +1,2 @@
 # Veganologo
-Um site de receitas veganas, para pessoas que busca ser mais saudável  
+Um site de receitas veganas, para pessoas que buscam  serem mais saudáveis.
