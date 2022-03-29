@@ -23,3 +23,4 @@ Um site de receitas veganas para pessoas que buscam ser mais saudaveis. A propos
 * [Joana] (https://github.com/Joana228)
 * [Paloma] (https://github.com/PLuiza12)
 * [Denilson] (https://github.com/Denils0n)
+* [Gabriella Batista] (https://github.com/gabriellaBatista)
