@@ -28,6 +28,14 @@
 	<a href="Perfil.php"> perfil</a>
 
 
+
+    <?php  if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
+        <a  href =" SairConta.php " id =" a1 " > Sair da conta </a>
+    <?php  else : ?>
+		<a href="Entrada.php"> Usar conta</a> <a href="Registrar.php">Criar conta</a>
+    <?php  endif  ?>
+
+
 	<p>Bem vindo(a) <?= $_SESSION['nome_usuario'] ?> </p>
 	<h2>Lista de receitas</h2>
 

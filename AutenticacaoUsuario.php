@@ -13,6 +13,6 @@
 	$res->bindValue(":s", $senha);
 	$res->execute();
 
-	header("location:bemvindo.php");
+	header("location:Entrada.php");
 
 ?>

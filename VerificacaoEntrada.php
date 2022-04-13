@@ -26,7 +26,7 @@
 	$_SESSION['codigo_usuario'] = $usuario['USU_ID'];
 	$_SESSION['nome_usuario'] = $usuario['USU_NOME'];
 	
-	header("location:Receitas.php")
+	header("location:index.php")
 		
 
 

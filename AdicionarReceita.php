@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,10 @@
 	<title>Mande sua receita</title>
 </head>
 <body>
+<?php  if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
+        <?php  header("lcoation:Registrar.php")?>
 
+    <?php  endif  ?>
 	<?php if (isset($_GET['msg'])) : ?>
 
 		<div> <?= $_GET['msg'] ?> </div>
@@ -22,6 +27,8 @@
 		<input type="submit" name="enviar">
 
 	</form>
+
+	<a href="SuasReceitas.php"> Volta </a>
 
 </body>
 </html>
