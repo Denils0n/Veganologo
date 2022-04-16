@@ -1,9 +1,16 @@
 <?php 
 	
 	session_start(); 
+    $ab = $_SESSION['codigo_usuario'];
+
 	require 'ConeccaoBD.php';
 
-	$sql = "SELECT REC_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
+
+
+    session_start(); 
+	require 'ConeccaoBD.php';
+
+	$sql = "SELECT REC_USU_ID,REC_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA WHERE REC_USU_ID = $ab";
 
 	$cmd = $pdo->prepare($sql);
 
@@ -12,7 +19,6 @@
     $cmd = $pdo->query($sql);
 
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <?php if(count($dados) != 0) : ?>
 	<table>

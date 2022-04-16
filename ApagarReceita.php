@@ -12,6 +12,6 @@
     $cmd = $pdo->prepare("DELETE FROM VEG_RECEITA WHERE REC_ID = :d");
     $cmd->bindValue(":d",$ap);
     $cmd->execute();
-    header("location:Receitas.php");
+    header("location:index.php");
 
 ?>
