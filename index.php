@@ -3,7 +3,7 @@
 	session_start(); 
 	require 'ConeccaoBD.php';
 
-	$sql = "SELECT REC_USU_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
+	$sql = "SELECT REC_USU_ID, REC_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
 
 	$cmd = $pdo->prepare($sql);
 
@@ -21,6 +21,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Receitas</title>
+	
 </head>
 <body>
 	
@@ -30,7 +31,7 @@
 
 
     <?php  if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
-        <a  href =" SairConta.php " id =" a1 " > Sair da conta </a>
+        <a  href =" SairConta.php " > Sair da conta </a>
     <?php  else : ?>
 		<a href="Entrada.php"> Usar conta</a> <a href="Registrar.php">Criar conta</a>
     <?php  endif  ?>
@@ -54,28 +55,25 @@
             <tr>
 
                 <?php foreach ($dados[$i] as $k => $v) : ?>
-
-                    <?php if ($k == 'REC_USU_ID') : ?>
-                    	<?php 
-						
+					<?php 
+						if ($k == 'REC_USU_ID') {
+							
 							$cmd = $pdo->prepare("SELECT USU_NOME FROM VEG_USUARIO WHERE USU_ID = :id");
                     		$cmd->bindValue(":id", $v);
                     		$cmd->execute();
                     		$resultado = $cmd->fetch();
-                    		
+							echo "<th>". $resultado[0]. "</th>";
+							
+						}elseif ($k == 'REC_ID') {
+							
+						}else {
+							echo "<th>". $v . "</th>";
+						}
 						?>
-						<th>
-							<?= $resultado[0] ?>
-						</th>
-					
-                    <?php else : ?>
-                        <th>
-                            <?= $v ?>
-                        </th>
-
-                    <?php endif ?>
-
+						
+										
                 <?php endforeach ?>
+				<th><a href="PaginaReceita.php?codigo= <?php echo $dados[$i]['REC_ID'];?>">Ver mais</a></th>
             </tr>
 
         <?php endfor ?>

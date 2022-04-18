@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+
+if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] === null ){
+    header("location:Registrar.php");
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -8,10 +16,6 @@
 	<title>Mande sua receita</title>
 </head>
 <body>
-<?php  if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
-        <?php  header("lcoation:Registrar.php")?>
-
-    <?php  endif  ?>
 	<?php if (isset($_GET['msg'])) : ?>
 
 		<div> <?= $_GET['msg'] ?> </div>

@@ -4,7 +4,7 @@
     if (isset($_GET['codigo'])) {
         $ap = addslashes($_GET['codigo']);
     }
-   echo ($ap);
+
     
 	require 'ConeccaoBD.php';
     
