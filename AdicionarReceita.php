@@ -91,7 +91,7 @@
     <input class="input" type="submit" value="Submit">
     </br>
     </br>
-    <a class="voltar" href="SuasReceitas.php"> Voltar </a>
+    <a class="voltar" href="Perfil.php"> Voltar </a>
   </form>
 </div>
 

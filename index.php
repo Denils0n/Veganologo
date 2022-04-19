@@ -1,11 +1,11 @@
 <?php 
-	
-	session_start(); 
-	require 'conecaoBanco.php';
+    
+    session_start(); 
+    require 'ConeccaoBD.php';
 
-	$sql = "SELECT REC_USU_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
+    $sql = "SELECT REC_USU_ID, REC_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
 
-	$cmd = $pdo->prepare($sql);
+    $cmd = $pdo->prepare($sql);
 
     $cmd->execute();
 
@@ -13,14 +13,13 @@
 
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
 
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="widtd=device-widtd, initial-scale=1">
 	<title>Receitas</title>
 
 	
@@ -34,7 +33,7 @@ body{
 
 .wrapper {
   display: block;
-  width: 850px;
+  widtd: 850px;
   background: #fff;
   margin: 0 auto;
   padding: 10px 17px;
@@ -42,7 +41,7 @@ body{
 }
 
 table{
-  width:100%;
+  widtd:100%;
   table-layout: fixed;
 }
 .tbl-header{
@@ -54,7 +53,7 @@ th{
   text-align: left;
   font-weight: 500;
   font-size: 12px;
-  color: #343434;;
+  color: #black;;
   text-transform: uppercase;
 }
 td{
@@ -84,7 +83,7 @@ td{
 .verde {
     background: #25c481  !important;
 }
-td {
+th {
     padding: 15px;
     text-align: left;
     vertical-align: middle;
@@ -147,8 +146,8 @@ h1 {
 		<a class="button button1" href="Entrada.php"> Usar conta</a> <a  class="button button1"  href="Registrar.php">Criar conta</a>
     <?php  endif  ?>
 
-<a class="row nome ">Bem vindo(a) Neymar</a>
-	<!--  <p>Bem vindo(a) <?= $_SESSION['USU_NOME'] ?> </p> -->
+
+	<p class="row nome ">Bem vindo(a) <?= $_SESSION['nome_usuario'] ?> </p> 
 
 
   <h1>Lista de Receitas</h1>
@@ -156,48 +155,44 @@ h1 {
 	<?php if(count($dados) != 0) : ?>
 	<table>
 		<tr class="row header verde">
-			<td>Altor</td>
-			<td>Nome</td>
-			<td>Ingrediente</td>
-			<td>Preparo</td>
-			<td>Utensilhos</td>
+			<th>Altor</th>
+			<th>Nome</th>
+			<th>Ingrediente</th>
+			<th>Preparo</th>
+			<th>Utensilhos</th>
 		</tr>
 		
 		<?php for ($i = 0; $i < count($dados); $i++) : ?>
 
             <tr>
 
-                <?php foreach ($dados[$i] as $k => $v) : ?>
-
-                    <?php if ($k == 'REC_USU_ID') : ?>
-                    	<?php 
-						
-							$cmd = $pdo->prepare("SELECT USU_NOME FROM VEG_USUARIO WHERE USU_ID = :id");
-                    		$cmd->bindValue(":id", $v);
-                    		$cmd->execute();
-                    		$resultado = $cmd->fetch();
-                    		
-						?>
-						<th class="row ">
-							<?= $resultado[0] ?>
-						</th>
-					
-                    <?php else : ?>
-                        <th class="row ">
-                            <?= $v ?>
-                        </th>
-
-                    <?php endif ?>
-
+                 <?php foreach ($dados[$i] as $k => $v) : ?>
+                    <?php 
+                        if ($k == 'REC_USU_ID') {
+                            
+                            $cmd = $pdo->prepare("SELECT USU_NOME FROM VEG_USUARIO WHERE USU_ID = :id");
+                            $cmd->bindValue(":id", $v);
+                            $cmd->execute();
+                            $resultado = $cmd->fetch();
+                            echo "<th>". $resultado[0]. "</th>";
+                            
+                        }elseif ($k == 'REC_ID') {
+                            
+                        }else {
+                            echo "<th>". $v . "</th>";
+                        }
+                        ?>
+                        
+                                        
                 <?php endforeach ?>
+                <th><a href="PaginaReceita.php?codigo= <?php echo $dados[$i]['REC_ID'];?>">Ver mais</a></th>
             </tr>
 
         <?php endfor ?>
 
-	</table>
-	<?php else : ?>
-		<p>Não temos nem uma receita no momento ;-;</p>
-	<?php endif ?>
-	 </div> 
+    </table>
+    <?php else : ?>
+        <p>Não temos nem uma receita no momento ;-;</p>
+    <?php endif ?>
 </body>
 </html>
