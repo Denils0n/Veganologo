@@ -22,6 +22,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vai que é tua Paloma</title>
+    <style>
+		body{
+			background-color: #90ee90;
+		}
+		#div1{
+			background-color: rgba(0,0,0,0.9);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			padding: 60px;
+			border-radius: 15px;
+			color: #ffff;
+			
+		}
+		input{
+			padding:15px;
+			border:none;
+			outline: none;
+			font-size: 15px;
+		}
+		#button{
+			background-color: dodgerblue;
+			border:none;
+			padding: 15px;
+			width:100%;
+			border-radius: 10px;
+			color: white;
+			font-size: 15px;
+			cursor:pointer;
+			width: 100%;
+
+		}
+		#button:hover{
+			background-color: deepskyblue;
+			cursor: pointer;
+		}
+		#button1{
+			float:left;
+			width: 90%;
+		}
+		#button2{
+			float:left;
+			width: 90%;
+		}
+		#button3{
+			float:left;
+			width: 90%;
+		}
+		#button4{
+			float:left;
+			width: 90%;
+		}
+		
+	</style>
 </head>
 <body>
     
@@ -33,9 +88,11 @@
                     <h4 class="modal-title">Editar Receita</h4>
             </div>
             <div class="modal-body">
+            <div id="div1">
                 <form role="form" method="POST" action="ModificarReceita.php?codigo= <?php echo $ap;?>">
                     <div class="form-group">
                             <input id="id" class="form-control" value=" <?= $ap ?> " name="id" type="hidden">
+                            <br><br>    
                     </div>
                     <div class="form-group">
                         <div class="form-line">
@@ -59,9 +116,10 @@
                         </div>
                     </div>
                     <div class="form-line">
-                        <input type="submit" name="enviar">
+                        <input type="submit" name="enviar" >
                     </div>
                 </form>
+            </div>
             </div>
         </div>
     </div>
