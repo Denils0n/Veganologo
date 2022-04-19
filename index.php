@@ -22,8 +22,117 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Receitas</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
 
+	
+	
+<style>
+body{
+    background: linear-gradient(to right, #dbdbdb, #ababab);
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.wrapper {
+  display: block;
+  width: 850px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 10px 17px;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+}
+
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #343434;;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #343434;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+.nome  {
+        font-weight: 600;
+    color: #ffffff;
+    padding: 13px;
+    background: #9f9f9f !important;
+
+}
+}
+.header  {
+    font-weight: 900;
+    color: #ffffff;
+    background: #ea6153;
+}
+
+.verde {
+    background: #25c481  !important;
+}
+td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #ffffff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+.row {
+ 
+    background: #f6f6f6;
+}
+h1 {
+    color: #23af74;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 13px 27px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #02a560;
+}
+
+.button1 {
+  background-color: #02a560;
+  color: white;
+}
+
+	
+</style>	
 </head>
 <body>
 	 <div class="wrapper">
