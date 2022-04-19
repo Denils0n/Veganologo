@@ -1,9 +1,9 @@
 <?php 
 	
 	session_start(); 
-	require 'ConeccaoBD.php';
+	require 'conecaoBanco.php';
 
-	$sql = "SELECT REC_USU_ID, REC_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
+	$sql = "SELECT REC_USU_ID, REC_NOME, REC_INGREDIENTES, REC_PREPARO, REC_UTENSILHOS FROM VEG_RECEITA ORDER BY REC_NOME";
 
 	$cmd = $pdo->prepare($sql);
 
@@ -13,6 +13,7 @@
 
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
 
+
 ?>
 
 <!DOCTYPE html>
@@ -21,69 +22,36 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Receitas</title>
-	<style>
-            body{
-                background-color: #90ee90;
-            }
-            #receitas{
-                background-color: rgba(0,0,0,0.9);
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                padding: 60px;
-                border-radius: 15px;
-                color: #ffff;
-                
-            }
-            input{
-                padding:15px;
-                border:none;
-                outline: none;
-                font-size: 15px;
-            }
-            th{
-                text-align: center;
-                background: #666;
-                color: black;
-            }
-            table{
-                background: #E6E6FA;
-                border-color: #2F4F4F;
-                border-style: dotted;
-            }
-            tr{
-                text-align: center; 
-            }
-            
-            </style>
-	
+	<link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
-	
+	 <div class="wrapper">
 
-	<a href="Perfil.php"> perfil</a>
+	<a class="button button1" href="Perfil.php"> perfil</a>
 
 
 
-    <?php  if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
-        <a  href =" SairConta.php " > Sair da conta </a>
+    <?php if ( isset ( $_SESSION [ 'auten' ]) && $_SESSION [ 'auten' ] !== null ): ?>
+        <a  class="button button1"   href =" SairConta.php " id =" a1 " > Sair da conta </a>
     <?php  else : ?>
-		<a href="Entrada.php"> Usar conta</a> <a href="Registrar.php">Criar conta</a>
+		<a class="button button1" href="Entrada.php"> Usar conta</a> <a  class="button button1"  href="Registrar.php">Criar conta</a>
     <?php  endif  ?>
 
+<a class="row nome ">Bem vindo(a) Neymar</a>
+	<!--  <p>Bem vindo(a) <?= $_SESSION['USU_NOME'] ?> </p> -->
 
-	<p>Bem vindo(a) <?= $_SESSION['nome_usuario'] ?> </p>
-	<h2>Lista de receitas</h2>
+
+  <h1>Lista de Receitas</h1>
 
 	<?php if(count($dados) != 0) : ?>
 	<table>
-		<tr>
-			<th>Autor</th>
-			<th>Nome</th>
-			<th>Ingredientes</th>
-			<th>Preparo</th>
-			<th>Utensilios</th>
+		<tr class="row header verde">
+			<td>Altor</td>
+			<td>Nome</td>
+			<td>Ingrediente</td>
+			<td>Preparo</td>
+			<td>Utensilhos</td>
 		</tr>
 		
 		<?php for ($i = 0; $i < count($dados); $i++) : ?>
@@ -91,25 +59,28 @@
             <tr>
 
                 <?php foreach ($dados[$i] as $k => $v) : ?>
-					<?php 
-						if ($k == 'REC_USU_ID') {
-							
+
+                    <?php if ($k == 'REC_USU_ID') : ?>
+                    	<?php 
+						
 							$cmd = $pdo->prepare("SELECT USU_NOME FROM VEG_USUARIO WHERE USU_ID = :id");
                     		$cmd->bindValue(":id", $v);
                     		$cmd->execute();
                     		$resultado = $cmd->fetch();
-							echo "<td>". $resultado[0]. "</td>";
-							
-						}elseif ($k == 'REC_ID') {
-							
-						}else {
-							echo "<td>". $v . "</td>";
-						}
+                    		
 						?>
-						
-										
+						<th class="row ">
+							<?= $resultado[0] ?>
+						</th>
+					
+                    <?php else : ?>
+                        <th class="row ">
+                            <?= $v ?>
+                        </th>
+
+                    <?php endif ?>
+
                 <?php endforeach ?>
-				<td><a href="PaginaReceita.php?codigo= <?php echo $dados[$i]['REC_ID'];?>">Ver mais</a></td>
             </tr>
 
         <?php endfor ?>
@@ -118,10 +89,6 @@
 	<?php else : ?>
 		<p>Não temos nem uma receita no momento ;-;</p>
 	<?php endif ?>
+	 </div> 
 </body>
 </html>
-
-
-
-	
-
