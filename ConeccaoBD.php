@@ -2,8 +2,8 @@
 
 
     $localhost = "localhost" ;
-    $usuario = 'admin';
-    $senha = 'admin';
+    $usuario = 'root';
+    $senha = 'pandoracastanho90.';
     $banco = "VEGANOLOGO" ;
     global  $pdo ;
 

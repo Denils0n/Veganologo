@@ -25,8 +25,44 @@ if (isset($_GET['codigo'])) {
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="widtd=device-widtd, initial-scale=1">
 	<title>Receitas</title>
+    <style>
+            body{
+                background-color: #90ee90;
+            }
+            #receitas{
+                background-color: rgba(0,0,0,0.9);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                padding: 60px;
+                border-radius: 15px;
+                color: #ffff;
+                
+            }
+            input{
+                padding:15px;
+                border:none;
+                outline: none;
+                font-size: 15px;
+            }
+            th{
+                text-align: center;
+                background: #666;
+                color: black;
+            }
+            table{
+                background: #E6E6FA;
+                border-color: #2F4F4F;
+                border-style: dotted;
+            }
+            tr{
+                text-align: center; 
+            }
+            
+            </style>
 	
 </head>
 <body>
@@ -35,11 +71,11 @@ if (isset($_GET['codigo'])) {
 	<?php if(count($d) != 0) : ?>
         <table>
             <tr>
-                <td>Altor</td>
-                <td>Nome</td>
-                <td>Ingrediente</td>
-                <td>Preparo</td>
-                <td>Utensilhos</td>
+                <th>Autor</th>
+                <th>Nome</th>
+                <th>Ingredientes</th>
+                <th>Preparo</th>
+                <th>Utensilios</th>
             </tr>
             
      
@@ -53,12 +89,12 @@ if (isset($_GET['codigo'])) {
                     		$cmd->bindValue(":id", $v);
                     		$cmd->execute();
                     		$resultado = $cmd->fetch();
-							echo "<th>". $resultado[0]. "</th>";
+							echo "<td>". $resultado[0]. "</td>";
 							
 						}elseif ($k == 'REC_ID') {
 							
 						}else {
-							echo "<th>". $v . "</th>";
+							echo "<td>". $v . "</td>";
 						}
 						?>
 						
@@ -69,6 +105,6 @@ if (isset($_GET['codigo'])) {
 
     <?php endif ?>
 	</table>
-<a href="Comentarar.php">Comentarar</a>
+<a href="Comentarar.php">Comentar</a>
 </body>
 </html>
