@@ -26,3 +26,5 @@ CREATE TABLE IF NOT EXISTS VEG_RECEITA(
 
 
 );
+
+/* Adicionar usuario e receitas fakes para aparecer mais opções, como a lista de receitas etc... */
